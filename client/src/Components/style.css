@@ -1,0 +1,159 @@
+.IndexPage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.navbar {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3px;
+}
+.navbar p{
+    padding: 3px;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(132, 255, 0);
+}
+.navbar .Login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    gap: 5px;
+}
+.navbar .Login h3 {
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(255, 255, 255);
+}
+.Search {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+.Search input {
+    width:100%;
+    height: 30px;
+    border: 0.5px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px;
+}
+.footer {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px; 
+    border-radius: 5px;
+}
+.modal-body ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.modal-body ul li {
+    background-color: rgba(165, 165, 165, 0.254);
+    padding: 5px;
+    border-radius: 10px;
+}
+.modal-content .modal-body input{
+    width: 100%;
+    height: 30px;
+}
+.modal-content .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.Site {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+.Site .Categories {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 5px;
+}
+.Site .Categories .Category {
+    background-color: rgba(255, 255, 255, 0.493);
+    border-radius: 10px;
+    width: 20%;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.Site .Categories .Category h3 {
+    margin: 0; /* Remove default margin from heading */
+    text-align: center; /* Center align heading text */
+    margin-bottom: 10px; /* Space below heading */
+}
+
+.AllSites {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.637);
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+}
+.WebSite {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+.WebSite a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+.WebSite:hover {
+    cursor: pointer;
+}
+.WebSite:hover img{
+    transform: scale(1.15);
+    transition: 0.1s ease-in-out;
+}
+.WebSite:hover a{
+    color: blue;
+}
+.WebSite img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.1s ease-in-out;
+}
+.editCheckbox {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.editCheckbox input{
+    cursor: pointer;
+}
