@@ -157,3 +157,28 @@
 .editCheckbox input{
     cursor: pointer;
 }
+
+@media screen and (max-width: 680px) {
+    .Categories {
+        flex-direction: column;
+        align-items: center;
+    }
+    .Site .Categories .Category {
+        width: 100%;
+    }
+    .Site .AllSites {
+        display: none;
+    }
+    .editCheckbox {
+        display: none;
+    }
+    .navbar p {
+        display: none;
+    }
+    .Search {
+        width: 100%;
+    }
+    .IndexPage{
+        height: 100%;
+    }
+}
