@@ -74,7 +74,7 @@ app.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid password' });
         }
-        const token = jwt.sign({ user: { userId: user.id } }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ user: { userId: user.id } }, JWT_SECRET);
         res.json({
             token,
             user: { id: user.id, username: user.username }, 
