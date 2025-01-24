@@ -30,8 +30,8 @@
     width: 100%;
     gap: 5px;
 }
-.navbar .Login h3 {
-    text-align: center;
+.navbar .Login h {
+    font-size:large;
     background-color: rgb(255, 255, 255);
 }
 .Search {
