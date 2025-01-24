@@ -451,15 +451,15 @@ export default function IndexPage() {
                                     <li><button className='btn' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button></li>
                                     <li><button className='btn' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button></li>
                                     <li><button className='btn' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add WebSite</button></li>
-                    <li><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                    <li><button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#aboutModal">
                     About
                 </button></li>
-                    <li> <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button></li>
+                    <li> <button className='btn' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button></li>
                                 </ul>
                             </div>
                             <div className='dropdown'>
                                 <button className='btn btn-info dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                    Show All Categories
+                                    Show My Categories
                                 </button>
                                 <ul className='dropdown-menu'>
                                     {AllCategory.map((category) => (
@@ -636,10 +636,10 @@ export default function IndexPage() {
                 }
                 <div className='Login'>
                     {token && <h3>{userName}</h3>}
-<button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#aboutModal">
+<button type="button" className="btn btn-secondary mobileAboutFeedback" data-bs-toggle="modal" data-bs-target="#aboutModal">
                     About
                 </button>
- <button className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button>
+ <button className='btn btn-warning mobileAboutFeedback' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button>
 {
                         !token && AdminToken ?
                         null:
