@@ -252,6 +252,7 @@
     .navbar .Login {
         width: 100%;
         justify-content: flex-end;
+        flex-wrap:wrap;
     }
     .footer {
         justify-content: flex-start;
@@ -275,5 +276,10 @@
     }
     .footer .dropdown-menu .btn {
         text-align: left;
+    }
+     .navbar .Login {
+        width: 100%;
+        justify-content: flex-end;
+        flex-wrap:wrap;
     }
 }
