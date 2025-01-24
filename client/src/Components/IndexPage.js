@@ -635,7 +635,7 @@ export default function IndexPage() {
                         null
                 }
                 <div className='Login'>
-                    {token && <h3>{userName}</h3>}
+                    {token && <h3 className="btn">{userName}</h3>}
 <button type="button" className="btn btn-secondary mobileAboutFeedback" data-bs-toggle="modal" data-bs-target="#aboutModal">
                     About
                 </button>
