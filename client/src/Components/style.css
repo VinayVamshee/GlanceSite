@@ -271,6 +271,9 @@
     .footer .mobile {
         display: contents;
     }
+    .mobileAboutFeedback {
+        display: none;
+    }
     .footer .dropdown-menu .editCheckbox{
         justify-content: flex-start;
     }
