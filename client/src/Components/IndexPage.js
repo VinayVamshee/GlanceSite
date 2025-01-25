@@ -28,7 +28,6 @@ export default function IndexPage() {
             const response = await axios.post("https://start-site-server.vercel.app/AddNewSite", Site, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            alert("Site added successfully!");
             setAllSite([...AllSite, response.data]);
         } catch (error) {
             console.error("Error adding site:", error);
@@ -36,18 +35,24 @@ export default function IndexPage() {
         }
     };
 
-    const DeleteSite = async (id) => {
-        try {
-            await axios.delete(`https://start-site-server.vercel.app/DeleteSite/${id}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            alert("Site deleted successfully!");
-            setAllSite(AllSite.filter(site => site._id !== id));
-        } catch (error) {
-            console.error("Error deleting site:", error);
-            alert("Failed to delete site.");
-        }
-    };
+   const DeleteSite = async (id) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this site?");
+    
+    if (!isConfirmed) {
+        return; 
+    }
+
+    try {
+        await axios.delete(`https://start-site-server.vercel.app/DeleteSite/${id}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        setAllSite(AllSite.filter(site => site._id !== id));
+    } catch (error) {
+        console.error("Error deleting site:", error);
+        alert("Failed to delete site.");
+    }
+};
+
 
     const AddNewCategory = async (e) => {
         e.preventDefault();
@@ -55,7 +60,6 @@ export default function IndexPage() {
             const response = await axios.post("https://start-site-server.vercel.app/AddNewCategory", Category, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            alert("Category added successfully!");
             setAllCategory([...AllCategory, response.data]);
         } catch (error) {
             console.error("Error adding category:", error);
@@ -83,7 +87,6 @@ export default function IndexPage() {
             });
 
             setBackgroundImage(userResponse.data.backgroundImage || defaultBackgroundColor);
-            alert("Login successful!");
             window.location.reload();
         } catch (error) {
             console.error("Login failed:", error.response?.data || error.message);
@@ -185,7 +188,6 @@ export default function IndexPage() {
         e.preventDefault();
         try {
             const response = await axios.post("https://start-site-server.vercel.app/admin/login", adminData);
-            alert("Admin login successful!");
             localStorage.setItem('AdminToken', response.data.token);
             window.location.reload();
         } catch (error) {
@@ -252,7 +254,6 @@ export default function IndexPage() {
             const response = await axios.post('https://start-site-server.vercel.app/addSite', commonSite);
             setSites([...sites, response.data]);
             setCommonSite({ Name: '', Url: '', Logo: '', Category: '' });
-            alert('Site added successfully!');
         } catch (error) {
             console.error('Error adding site:', error);
         }
@@ -264,7 +265,6 @@ export default function IndexPage() {
         try {
             const response = await axios.put(`https://start-site-server.vercel.app/editCommonSite/${editCommonSite._id}`, editCommonSite);
             setSites(prevSites => prevSites.map(site => site._id === editCommonSite._id ? response.data : site));
-            alert('Site updated successfully!');
         } catch (error) {
             console.error('Error updating site:', error);
             alert('Failed to update site. Please try again.');
@@ -272,10 +272,14 @@ export default function IndexPage() {
     };
 
     const deleteSite = async (siteId) => {
+        const isConfirmed = window.confirm("Are you sure you want to delete this site?");
+    
+    if (!isConfirmed) {
+        return;
+    }
         try {
             await axios.delete(`https://start-site-server.vercel.app/deletecommonsite/${siteId}`);
             setSites(prevSites => prevSites.filter(site => site._id !== siteId));
-            alert('Site deleted successfully!');
         } catch (error) {
             console.error('Error deleting site:', error);
             alert('Failed to delete site. Please try again.');
@@ -320,9 +324,13 @@ export default function IndexPage() {
     const [AdmineditMode, setAdminEditMode] = useState(false);
 
     const deleteCommonCategory = async (categoryId) => {
+         const isConfirmed = window.confirm("Are you sure you want to delete this Category?");
+    
+    if (!isConfirmed) {
+        return; 
+    }
         try {
             await axios.delete(`https://start-site-server.vercel.app/deleteCommonCategory/${categoryId}`);
-            alert('Category deleted successfully!');
         } catch (error) {
             console.error('Error deleting category:', error);
             alert('Failed to delete category. Please try again.');
@@ -337,7 +345,7 @@ export default function IndexPage() {
 
         try {
             await axios.post('https://start-site-server.vercel.app/feedback', { name, message });
-            alert('Feedback submitted successfully!');
+            alert('Thank You for your valuable feedback.');
         } catch (error) {
             console.error('Error submitting feedback:', error);
             alert('Error submitting feedback. Please try again.');
@@ -345,6 +353,11 @@ export default function IndexPage() {
     };
 
     const deleteCategory = async (categoryId) => {
+         const isConfirmed = window.confirm("Are you sure you want to delete this Category?");
+    
+    if (!isConfirmed) {
+        return; // Exit the function if the user clicks "Cancel"
+    }
         try {
             await axios.delete(`https://start-site-server.vercel.app/DeleteCategory/${categoryId}`, {
                 headers: {
@@ -352,7 +365,6 @@ export default function IndexPage() {
                 }
             });
             setAllCategory(prevCategories => prevCategories.filter(category => category._id !== categoryId));
-            alert('Category deleted successfully!');
         } catch (error) {
             console.error('Error deleting category:', error);
             alert('Failed to delete category. Please try again.');
