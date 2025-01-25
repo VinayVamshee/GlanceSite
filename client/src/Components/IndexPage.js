@@ -359,7 +359,7 @@ export default function IndexPage() {
         }
     };
 
-    const defaultBackgroundColor = 'https://4kwallpapers.com/images/walls/thumbs_2t/11581.png';
+    const defaultBackgroundColor = 'https://wallpapers.com/images/featured/blank-white-background-xbsfzsltjksfompa.jpg';
     const [backgroundImage, setBackgroundImage] = useState(defaultBackgroundColor);
     // eslint-disable-next-line 
     const [commonBackground, setCommonBackground] = useState(defaultBackgroundColor);
