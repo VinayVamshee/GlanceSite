@@ -359,7 +359,7 @@ export default function IndexPage() {
         }
     };
 
-    const defaultBackgroundColor = 'https://static.vecteezy.com/system/resources/thumbnails/002/850/198/original/loading-circle-icon-on-white-background-4k-free-video.jpg';
+    const defaultBackgroundColor = 'https://videocdn.cdnpk.net/videos/277dd251-58e5-4e33-ba19-59c9758dc9d4/horizontal/thumbnails/large.jpg';
     const [backgroundImage, setBackgroundImage] = useState(defaultBackgroundColor);
     // eslint-disable-next-line 
     const [commonBackground, setCommonBackground] = useState(defaultBackgroundColor);
