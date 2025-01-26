@@ -371,7 +371,7 @@ export default function IndexPage() {
         }
     };
 
-    const defaultBackgroundColor = 'https://wallpapers.com/images/hd/minimalist-abstract-cn47zd2f71kzdt66.jpg';
+    const defaultBackgroundColor = 'https://c4.wallpaperflare.com/wallpaper/379/399/753/rainbow-day-light-wait-wallpaper-preview.jpg';
     const [backgroundImage, setBackgroundImage] = useState(defaultBackgroundColor);
     // eslint-disable-next-line 
     const [commonBackground, setCommonBackground] = useState(defaultBackgroundColor);
