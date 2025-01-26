@@ -371,7 +371,7 @@ export default function IndexPage() {
         }
     };
 
-    const defaultBackgroundColor = 'https://videocdn.cdnpk.net/videos/277dd251-58e5-4e33-ba19-59c9758dc9d4/horizontal/thumbnails/large.jpg';
+    const defaultBackgroundColor = 'https://wallpapers.com/images/hd/minimalist-abstract-cn47zd2f71kzdt66.jpg';
     const [backgroundImage, setBackgroundImage] = useState(defaultBackgroundColor);
     // eslint-disable-next-line 
     const [commonBackground, setCommonBackground] = useState(defaultBackgroundColor);
