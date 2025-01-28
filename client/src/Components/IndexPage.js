@@ -884,7 +884,7 @@ export default function IndexPage() {
                 {
                     (!token || (token && showHomeSites)) && (
                         <>
-                            <div className='Categories'>
+                            <div className='Categories row'>
                                 {allCommonCategories.map((category, idx) => (
                                     <div key={idx} id={category.Name.replace(/\s+/g, '-').toLowerCase()} className='Category'>
                                         {allSites.filter(site => site.Category.trim().toLowerCase() === category.Name.trim().toLowerCase())
