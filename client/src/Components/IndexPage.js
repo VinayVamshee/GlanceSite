@@ -487,18 +487,18 @@ export default function IndexPage() {
                                             </div>
                                         </li>
                                         <li className='dropend'>
-                                                <button className="dropdown-item dropdown-toggle" onClick={handleSubmenuClick}>
-                                                    Categories
-                                                </button>
-                                                <ul className={`dropdown-menu ${showSubmenu ? "show" : ""}`} style={{ position: "absolute", left: "100%", top: "0" }}>
-                                                    {allCommonCategories.map((category) => (
-                                                        <li key={category._id}>
-                                                            <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
-                                                                {category.Name}
-                                                            </a>
-                                                        </li>
-                                                    ))}
-                                                </ul>
+                                            <button className="dropdown-item dropdown-toggle" onClick={handleSubmenuClick}>
+                                                Categories
+                                            </button>
+                                            <ul className={`dropdown-menu ${showSubmenu ? "show" : ""}`} style={{ position: "absolute", left: "100%", top: "0" }}>
+                                                {allCommonCategories.map((category) => (
+                                                    <li key={category._id}>
+                                                        <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                            {category.Name}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -555,14 +555,14 @@ export default function IndexPage() {
                             null
                     }
 
-{
+                    {
                         token ?
                             <>
                                 <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
                             </>
                             :
                             <>
-                            <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Categories
                                 </button>
                                 <ul className="dropdown-menu">
@@ -624,18 +624,18 @@ export default function IndexPage() {
                                             </div>
                                         </li>
                                         <li className='dropend'>
-                                                <button className="dropdown-item dropdown-toggle" onClick={handleSubmenuClick}>
-                                                    Categories
-                                                </button>
-                                                <ul className={`dropdown-menu ${showSubmenu ? "show" : ""}`} style={{ position: "absolute", left: "100%", top: "0" }}>
-                                                    {allCommonCategories.map((category) => (
-                                                        <li key={category._id}>
-                                                            <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
-                                                                {category.Name}
-                                                            </a>
-                                                        </li>
-                                                    ))}
-                                                </ul>
+                                            <button className="dropdown-item dropdown-toggle" onClick={handleSubmenuClick}>
+                                                Categories
+                                            </button>
+                                            <ul className={`dropdown-menu ${showSubmenu ? "show" : ""}`} style={{ position: "absolute", left: "100%", top: "0" }}>
+                                                {allCommonCategories.map((category) => (
+                                                    <li key={category._id}>
+                                                        <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                            {category.Name}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -719,6 +719,7 @@ export default function IndexPage() {
             </div>
 
             <div className='Site'>
+                {/* Users Sites */}
                 {
                     token ?
                         <>
@@ -796,29 +797,31 @@ export default function IndexPage() {
                         </>
                         : null
                 }
+
+                {/* Common Sites */}
                 {
                     (!token || (token && showHomeSites)) && (
                         <>
                             <div className='Categories row'>
                                 {allCommonCategories.map((category, idx) => (
-                                    <div key={idx} id={category.Category.replace(/\s+/g, '-').toLowerCase()} className='naming-problem'>
-                                    <p>{category.Category}</p>
-                                    <div className='Category'>
-                                        {AllSite.filter(site => site.Category.trim().toLowerCase() === category.Category.trim().toLowerCase())
-                                            .map((site, index) => (
-                                                <div key={index} className='WebSite slideRightAnimation' style={{ animationDelay: `${1 + index * 0.2}s` }}>
-                                                    <a href={site.Url} target='_blank' rel="noreferrer"> <img src={site.Logo} alt='...' />{site.Name}</a>
-                                                </div>
-                                            ))
-                                        }
-                                        {
-                                            editMode && (
-                                                <button className='btn btn-outline-danger' onClick={() => deleteCommonCategory(category._id)}> Delete Category:  {category.Category}</button>
-                                            )
-                                        }
-                                    </div>
+                                    <div key={idx} id={category.Name.replace(/\s+/g, '-').toLowerCase()} className='naming-problem'>
+                                        <p>{category.Name}</p>
+                                        <div className='Category'>
+                                            {allSites.filter(site => site.Category.trim().toLowerCase() === category.Name.trim().toLowerCase())
+                                                .map((site, index) => (
+                                                    <div key={index} className='WebSite slideRightAnimation' style={{ animationDelay: `${1 + index * 0.2}s` }}>
+                                                        <a href={site.Url} target='_blank' rel="noreferrer"> <img src={site.Logo} alt='...' />{site.Name}</a>
+                                                    </div>
+                                                ))
+                                            }
+                                            {
+                                                editMode && (
+                                                    <button className='btn btn-outline-danger' onClick={() => deleteCommonCategory(category._id)}> Delete Category:  {category.Category}</button>
+                                                )
+                                            }
+                                        </div>
 
-                                </div>
+                                    </div>
                                 ))}
                             </div>
 
