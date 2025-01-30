@@ -25,7 +25,7 @@ export default function IndexPage() {
     const AddNewSite = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/AddNewSite", Site, {
+            const response = await axios.post("http://localhost:3001/AddNewSite", Site, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAllSite([...AllSite, response.data]);
@@ -43,7 +43,7 @@ export default function IndexPage() {
         }
 
         try {
-            await axios.delete(`https://start-site-server.vercel.app/DeleteSite/${id}`, {
+            await axios.delete(`http://localhost:3001/DeleteSite/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAllSite(AllSite.filter(site => site._id !== id));
@@ -57,7 +57,7 @@ export default function IndexPage() {
     const AddNewCategory = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/AddNewCategory", Category, {
+            const response = await axios.post("http://localhost:3001/AddNewCategory", Category, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAllCategory([...AllCategory, response.data]);
@@ -78,11 +78,11 @@ export default function IndexPage() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/login", loginData);
+            const response = await axios.post("http://localhost:3001/login", loginData);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('username', response.data.user?.username || 'user');
             setUserName(response.data.user?.username || 'user');
-            const userResponse = await axios.get("https://start-site-server.vercel.app/getUserBackground", {
+            const userResponse = await axios.get("http://localhost:3001/getUserBackground", {
                 headers: { Authorization: `Bearer ${response.data.token}` }
             });
 
@@ -97,7 +97,7 @@ export default function IndexPage() {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("https://start-site-server.vercel.app/register", registerData);
+            await axios.post("http://localhost:3001/register", registerData);
             alert("Registration Successful. Please login.");
             window.location.reload();
         } catch (error) {
@@ -110,7 +110,7 @@ export default function IndexPage() {
         const fetchSites = async () => {
             if (!token) return;
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/GetSite', {
+                const response = await axios.get('http://localhost:3001/GetSite', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAllSite(response.data);
@@ -125,7 +125,7 @@ export default function IndexPage() {
         const fetchCategories = async () => {
             if (!token) return;
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/GetCategory', {
+                const response = await axios.get('http://localhost:3001/GetCategory', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAllCategory(response.data);
@@ -165,7 +165,7 @@ export default function IndexPage() {
     const handleUpdate = async () => {
         try {
             // eslint-disable-next-line
-            const updateResponse = await axios.put(`https://start-site-server.vercel.app/sites/${EditSite._id}`, {
+            const updateResponse = await axios.put(`http://localhost:3001/sites/${EditSite._id}`, {
                 Name: EditSite.Name,
                 Url: EditSite.Url,
                 Logo: EditSite.Logo,
@@ -173,7 +173,7 @@ export default function IndexPage() {
             }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const response = await axios.get('https://start-site-server.vercel.app/GetSite', {
+            const response = await axios.get('http://localhost:3001/GetSite', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAllSite(response.data);
@@ -187,7 +187,7 @@ export default function IndexPage() {
     const handleAdminLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://start-site-server.vercel.app/admin/login", adminData);
+            const response = await axios.post("http://localhost:3001/admin/login", adminData);
             localStorage.setItem('AdminToken', response.data.token);
             window.location.reload();
         } catch (error) {
@@ -200,7 +200,7 @@ export default function IndexPage() {
         e.preventDefault();
         try {
             // eslint-disable-next-line
-            const response = await axios.post("https://start-site-server.vercel.app/admin/register", registerData);
+            const response = await axios.post("http://localhost:3001/admin/register", registerData);
             alert("Admin registration successful!");
         } catch (error) {
             console.error("Admin registration failed:", error.response?.data || error.message);
@@ -213,7 +213,7 @@ export default function IndexPage() {
         const fetchUsers = async () => {
             if (AdminToken) {
                 try {
-                    const response = await axios.get('https://start-site-server.vercel.app/getAllUsers', {
+                    const response = await axios.get('http://localhost:3001/getAllUsers', {
                         headers: { Authorization: `Bearer ${AdminToken}` }
                     });
                     setUsers(response.data);
@@ -229,7 +229,7 @@ export default function IndexPage() {
     useEffect(() => {
         const fetchFeedbacks = async () => {
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/getfeedback');
+                const response = await axios.get('http://localhost:3001/getfeedback');
                 setFeedbacks(response.data);
             } catch (error) {
                 console.error('Error fetching feedbacks:', error);
@@ -251,7 +251,7 @@ export default function IndexPage() {
     const addSite = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://start-site-server.vercel.app/addSite', commonSite);
+            const response = await axios.post('http://localhost:3001/addSite', commonSite);
             setSites([...sites, response.data]);
             setCommonSite({ Name: '', Url: '', Logo: '', Category: '' });
         } catch (error) {
@@ -263,7 +263,7 @@ export default function IndexPage() {
 
     const handleCommonSiteUpdate = async () => {
         try {
-            const response = await axios.put(`https://start-site-server.vercel.app/editCommonSite/${editCommonSite._id}`, editCommonSite);
+            const response = await axios.put(`http://localhost:3001/editCommonSite/${editCommonSite._id}`, editCommonSite);
             setSites(prevSites => prevSites.map(site => site._id === editCommonSite._id ? response.data : site));
         } catch (error) {
             console.error('Error updating site:', error);
@@ -278,7 +278,7 @@ export default function IndexPage() {
             return;
         }
         try {
-            await axios.delete(`https://start-site-server.vercel.app/deletecommonsite/${siteId}`);
+            await axios.delete(`http://localhost:3001/deletecommonsite/${siteId}`);
             setSites(prevSites => prevSites.filter(site => site._id !== siteId));
         } catch (error) {
             console.error('Error deleting site:', error);
@@ -295,7 +295,7 @@ export default function IndexPage() {
     const addCategory = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://start-site-server.vercel.app/addCategory', commonCategory);
+            const response = await axios.post('http://localhost:3001/addCategory', commonCategory);
             setCommonCategories([...commonCategories, response.data]);
             alert('Category added successfully!');
         } catch (error) {
@@ -308,10 +308,10 @@ export default function IndexPage() {
     useEffect(() => {
         const fetchSitesAndCategories = async () => {
             try {
-                const sitesResponse = await axios.get('https://start-site-server.vercel.app/getAllSites');
+                const sitesResponse = await axios.get('http://localhost:3001/getAllSites');
                 setAllSites(sitesResponse.data);
 
-                const response = await axios.get('https://start-site-server.vercel.app/getAllCommonCategories');
+                const response = await axios.get('http://localhost:3001/getAllCommonCategories');
                 setAllCommonCategories(response.data);
             } catch (error) {
                 console.error('Error fetching sites or categories', error);
@@ -330,7 +330,7 @@ export default function IndexPage() {
             return;
         }
         try {
-            await axios.delete(`https://start-site-server.vercel.app/deleteCommonCategory/${categoryId}`);
+            await axios.delete(`http://localhost:3001/deleteCommonCategory/${categoryId}`);
         } catch (error) {
             console.error('Error deleting category:', error);
             alert('Failed to delete category. Please try again.');
@@ -344,7 +344,7 @@ export default function IndexPage() {
         const message = event.target.message.value;
 
         try {
-            await axios.post('https://start-site-server.vercel.app/feedback', { name, message });
+            await axios.post('http://localhost:3001/feedback', { name, message });
             alert('Thank You for your valuable feedback.');
         } catch (error) {
             console.error('Error submitting feedback:', error);
@@ -359,7 +359,7 @@ export default function IndexPage() {
             return; // Exit the function if the user clicks "Cancel"
         }
         try {
-            await axios.delete(`https://start-site-server.vercel.app/DeleteCategory/${categoryId}`, {
+            await axios.delete(`http://localhost:3001/DeleteCategory/${categoryId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -380,7 +380,7 @@ export default function IndexPage() {
     const saveUserBackground = async () => {
         try {
             // eslint-disable-next-line
-            const response = await axios.post("https://start-site-server.vercel.app/saveUserBackground", { backgroundImage }, {
+            const response = await axios.post("http://localhost:3001/saveUserBackground", { backgroundImage }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Background image saved successfully!");
@@ -392,7 +392,7 @@ export default function IndexPage() {
 
     const updateCommonBackground = async () => {
         try {
-            await axios.post('https://start-site-server.vercel.app/saveCommonBackground', { backgroundImage: newBackgroundImage });
+            await axios.post('http://localhost:3001/saveCommonBackground', { backgroundImage: newBackgroundImage });
             setCommonBackground(newBackgroundImage);
             alert("Common background updated successfully!");
             window.location.reload();
@@ -405,7 +405,7 @@ export default function IndexPage() {
     useEffect(() => {
         const fetchUserBackground = async () => {
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/getUserBackground', {
+                const response = await axios.get('http://localhost:3001/getUserBackground', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setBackgroundImage(response.data.backgroundImage || defaultBackgroundColor);
@@ -417,7 +417,7 @@ export default function IndexPage() {
 
         const fetchCommonBackground = async () => {
             try {
-                const response = await axios.get('https://start-site-server.vercel.app/getCommonBackground');
+                const response = await axios.get('http://localhost:3001/getCommonBackground');
                 setCommonBackground(response.data.backgroundImage || defaultBackgroundColor);
                 setBackgroundImage(response.data.backgroundImage || defaultBackgroundColor);
             } catch (error) {
@@ -435,6 +435,11 @@ export default function IndexPage() {
 
     const [showHomeSites, setShowHomeSites] = useState(false);
 
+    const [showSubmenu, setShowSubmenu] = useState(false);
+    const handleSubmenuClick = (e) => {
+        e.stopPropagation(); // Stops Bootstrap from closing the dropdown
+        setShowSubmenu(!showSubmenu);
+    };
 
     return (
         <div className='IndexPage' style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -446,6 +451,11 @@ export default function IndexPage() {
                 <form className='Search' onSubmit={googleSearch}>
                     <input id='search' type='text' placeholder='Google Search...' />
                 </form>
+                {
+                    token ?
+                        <span>{userName}</span>
+                        : <span>GLANCE</span>
+                }
             </div>
             <div className="collapse" id="Navigation-Collapse">
                 <div className='options'>
@@ -476,19 +486,19 @@ export default function IndexPage() {
                                                 <input type="checkbox" checked={showHomeSites} onChange={(e) => setShowHomeSites(e.target.checked)} />Websites
                                             </div>
                                         </li>
-                                        <li className="dropdown-submenu dropdown-item">
-                                            <button className="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Categories
-                                            </button>
-                                            <ul className="dropdown-menu">
-                                                {allCommonCategories.map((category) => (
-                                                    <li key={category._id}>
-                                                        <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
-                                                            {category.Name}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                        <li className='dropend'>
+                                                <button className="dropdown-item dropdown-toggle" onClick={handleSubmenuClick}>
+                                                    Categories
+                                                </button>
+                                                <ul className={`dropdown-menu ${showSubmenu ? "show" : ""}`} style={{ position: "absolute", left: "100%", top: "0" }}>
+                                                    {allCommonCategories.map((category) => (
+                                                        <li key={category._id}>
+                                                            <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                                {category.Name}
+                                                            </a>
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -537,7 +547,7 @@ export default function IndexPage() {
                     {
                         !AdminToken && !token ?
                             <>
-                                <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                                <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#aboutModal">
                                     About
                                 </button>
                                 <button className='btn' data-bs-toggle="modal" data-bs-target="#FeedbackModal">Feedback</button></>
@@ -545,13 +555,25 @@ export default function IndexPage() {
                             null
                     }
 
-                    {
+{
                         token ?
                             <>
                                 <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
                             </>
                             :
                             <>
+                            <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categories
+                                </button>
+                                <ul className="dropdown-menu">
+                                    {allCommonCategories.map((category) => (
+                                        <li key={category._id}>
+                                            <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                {category.Name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
                                 <button className='btn btn-success' data-bs-toggle="modal" data-bs-target="#LoginModal">User Login</button>
                                 <button className='btn btn-danger' data-bs-toggle="modal" data-bs-target="#AdminModal">Admin</button>
                             </>
@@ -601,19 +623,19 @@ export default function IndexPage() {
                                                 <input type="checkbox" checked={showHomeSites} onChange={(e) => setShowHomeSites(e.target.checked)} />Websites
                                             </div>
                                         </li>
-                                        <li className="dropdown-submenu dropdown-item">
-                                            <button className="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Categories
-                                            </button>
-                                            <ul className="dropdown-menu">
-                                                {allCommonCategories.map((category) => (
-                                                    <li key={category._id}>
-                                                        <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
-                                                            {category.Name}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                        <li className='dropend'>
+                                                <button className="dropdown-item dropdown-toggle" onClick={handleSubmenuClick}>
+                                                    Categories
+                                                </button>
+                                                <ul className={`dropdown-menu ${showSubmenu ? "show" : ""}`} style={{ position: "absolute", left: "100%", top: "0" }}>
+                                                    {allCommonCategories.map((category) => (
+                                                        <li key={category._id}>
+                                                            <a className="dropdown-item" href={`#${category.Name.replace(/\s+/g, '-').toLowerCase()}`}>
+                                                                {category.Name}
+                                                            </a>
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -694,7 +716,6 @@ export default function IndexPage() {
                             </>
                     }
                 </div>
-
             </div>
 
             <div className='Site'>
@@ -703,19 +724,23 @@ export default function IndexPage() {
                         <>
                             <div className='Categories row'>
                                 {AllCategory.map((category, idx) => (
-                                    <div key={idx} id={category.Category.replace(/\s+/g, '-').toLowerCase()} className='Category'>
-                                        {AllSite.filter(site => site.Category.trim().toLowerCase() === category.Category.trim().toLowerCase())
-                                            .map((site, index) => (
-                                                <div key={index} className='WebSite slideRightAnimation' style={{ animationDelay: `${index * 0.2}s` }}>
-                                                    <a href={site.Url} target='_blank' rel="noreferrer"> <img src={site.Logo} alt='...' />{site.Name}</a>
-                                                </div>
-                                            ))
-                                        }
-                                        {
-                                            editMode && (
-                                                <button className='btn btn-outline-danger' onClick={() => deleteCategory(category._id)}> Delete Category:  {category.Category}</button>
-                                            )
-                                        }
+                                    <div key={idx} id={category.Category.replace(/\s+/g, '-').toLowerCase()} className='naming-problem'>
+                                        <p>{category.Category}</p>
+                                        <div className='Category'>
+                                            {AllSite.filter(site => site.Category.trim().toLowerCase() === category.Category.trim().toLowerCase())
+                                                .map((site, index) => (
+                                                    <div key={index} className='WebSite slideRightAnimation' style={{ animationDelay: `${1 + index * 0.2}s` }}>
+                                                        <a href={site.Url} target='_blank' rel="noreferrer"> <img src={site.Logo} alt='...' />{site.Name}</a>
+                                                    </div>
+                                                ))
+                                            }
+                                            {
+                                                editMode && (
+                                                    <button className='btn btn-outline-danger' onClick={() => deleteCategory(category._id)}> Delete Category:  {category.Category}</button>
+                                                )
+                                            }
+                                        </div>
+
                                     </div>
                                 ))}
                             </div>
