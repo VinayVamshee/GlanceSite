@@ -801,22 +801,24 @@ export default function IndexPage() {
                         <>
                             <div className='Categories row'>
                                 {allCommonCategories.map((category, idx) => (
-                                    <div key={idx} id={category.Name.replace(/\s+/g, '-').toLowerCase()} className='Category'>
-                                        {allSites.filter(site => site.Category.trim().toLowerCase() === category.Name.trim().toLowerCase())
+                                    <div key={idx} id={category.Category.replace(/\s+/g, '-').toLowerCase()} className='naming-problem'>
+                                    <p>{category.Category}</p>
+                                    <div className='Category'>
+                                        {AllSite.filter(site => site.Category.trim().toLowerCase() === category.Category.trim().toLowerCase())
                                             .map((site, index) => (
-                                                <div key={index} className='WebSite slideRightAnimation' style={{ animationDelay: `${index * 0.2}s` }}>
-                                                    <a href={site.Url} target='_blank' rel="noreferrer"><img src={site.Logo} alt='...' />{site.Name}</a>
+                                                <div key={index} className='WebSite slideRightAnimation' style={{ animationDelay: `${1 + index * 0.2}s` }}>
+                                                    <a href={site.Url} target='_blank' rel="noreferrer"> <img src={site.Logo} alt='...' />{site.Name}</a>
                                                 </div>
                                             ))
                                         }
                                         {
-                                            (AdminToken && AdmineditMode) ?
-                                                <button className='btn btn-outline-danger' onClick={() => deleteCommonCategory(category._id)}> Delete Category: {category.Name}</button>
-                                                :
-                                                null
+                                            editMode && (
+                                                <button className='btn btn-outline-danger' onClick={() => deleteCommonCategory(category._id)}> Delete Category:  {category.Category}</button>
+                                            )
                                         }
-
                                     </div>
+
+                                </div>
                                 ))}
                             </div>
 
