@@ -439,7 +439,44 @@ export default function IndexPage() {
     const handleSubmenuClick = (e) => {
         e.stopPropagation(); // Stops Bootstrap from closing the dropdown
         setShowSubmenu(!showSubmenu);
+
+
     };
+
+    const [selectedUsers, setSelectedUsers] = useState([]);
+
+    const handleCheckboxChange = (username) => {
+        setSelectedUsers((prevSelected) =>
+            prevSelected.includes(username)
+                ? prevSelected.filter((name) => name !== username)
+                : [...prevSelected, username]
+        );
+    };
+
+    const handleSave = async () => {
+        try {
+            await axios.post("https://start-site-server.vercel.app/AddNewLockedUser", { names: selectedUsers });
+            alert("Locked users updated successfully");
+        } catch (error) {
+            console.error("Error updating locked users:", error);
+            alert("Failed to update locked users");
+        }
+    };
+
+    useEffect(() => {
+        const fetchLockedUsers = async () => {
+            try {
+                const response = await axios.get("https://start-site-server.vercel.app/GetLockedUsers");
+                const lockedUsernames = response.data.map(user => user.name);
+                setSelectedUsers(lockedUsernames);
+            } catch (error) {
+                console.error("Error fetching locked users:", error);
+            }
+        };
+
+        fetchLockedUsers();
+    }, []);
+
 
     return (
         <div className='IndexPage' style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -600,17 +637,23 @@ export default function IndexPage() {
                         token ?
                             <>
                                 {/* Users Modify */}
-                                <div className="dropdown">
-                                    <button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Modify
-                                    </button>
-                                    <ul className="dropdown-menu">
-                                        <li><div className='Checkbox dropdown-item'><input type='checkbox' checked={editMode} onChange={(e) => setEditMode(e.target.checked)} />Edit Site</div></li>
-                                        <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add Website</button></li>
-                                        <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button></li>
-                                        <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button></li>
-                                    </ul>
-                                </div>
+                                {
+                                    !selectedUsers.includes(userName) || AdminToken ?
+                                        <div className="dropdown">
+                                            <button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Modify
+                                            </button>
+                                            <ul className="dropdown-menu">
+                                                <li><div className='Checkbox dropdown-item'><input type='checkbox' checked={editMode} onChange={(e) => setEditMode(e.target.checked)} />Edit Site</div></li>
+                                                <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add Website</button></li>
+                                                <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button></li>
+                                                <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button></li>
+                                            </ul>
+                                        </div>
+                                        :
+                                        null
+                                }
+
 
                                 {/* View Home */}
                                 <div className="dropdown">
@@ -1211,6 +1254,7 @@ export default function IndexPage() {
                                                 <th>Username</th>
                                                 <th>Password</th>
                                                 <th>PhoneNo</th>
+                                                <th>Lock Modify</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1219,10 +1263,12 @@ export default function IndexPage() {
                                                     <td>{user.username}</td>
                                                     <td>{user.password}</td>
                                                     <td>{user.phoneno}</td>
+                                                    <th><input type="checkbox" checked={selectedUsers.includes(user.username)} onChange={() => handleCheckboxChange(user.username)} /></th>
                                                 </tr>
                                             ))}
                                         </tbody>
                                     </table>
+                                    <button className='btn btn-success' onClick={handleSave}>Save</button>
                                 </div>
                             )}
                         </div>
