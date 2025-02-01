@@ -508,7 +508,7 @@ export default function IndexPage() {
                     <img src='https://www.freeiconspng.com/thumbs/menu-icon/menu-icon-24.png' alt='...' />
                 </button>
                 <form className='Search' onSubmit={googleSearch}>
-                    <input type="text" id=" search" placeholder='Search Websit e or Google...' value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+                    <input type="text" id=" search" placeholder='Search Website or Google...' value={searchText} onChange={(e) => setSearchText(e.target.value)} />
                 </form>
                 {
                     token ?
