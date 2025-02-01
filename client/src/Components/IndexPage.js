@@ -499,18 +499,25 @@ export default function IndexPage() {
                     {
                         token ?
                             <>
-                                {/* Users Modify */}
-                                <div className="dropend">
-                                    <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Modify
-                                    </button>
-                                    <ul className="dropdown-menu">
-                                        <li><div className='Checkbox dropdown-item'><input type='checkbox' checked={editMode} onChange={(e) => setEditMode(e.target.checked)} />Edit Site</div></li>
-                                        <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add Website</button></li>
-                                        <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button></li>
-                                        <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button></li>
-                                    </ul>
-                                </div>
+                                {
+                                    !selectedUsers.includes(userName) || AdminToken ?
+                                        <>
+                                            {/* Users Modify */}
+                                            <div className="dropend">
+                                                <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Modify
+                                                </button>
+                                                <ul className="dropdown-menu">
+                                                    <li><div className='Checkbox dropdown-item'><input type='checkbox' checked={editMode} onChange={(e) => setEditMode(e.target.checked)} />Edit Site</div></li>
+                                                    <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewSiteModal">Add Website</button></li>
+                                                    <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add Category</button></li>
+                                                    <li><button className='btn dropdown-item' data-bs-toggle="modal" data-bs-target="#ChangeBackgroundModal">Change Background</button></li>
+                                                </ul>
+                                            </div>
+                                        </>
+                                        :
+                                        null
+                                }
 
                                 {/* View Home */}
                                 <div className="dropend">
