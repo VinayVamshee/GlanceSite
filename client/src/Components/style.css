@@ -47,6 +47,22 @@
     animation: slideDown 1s ease-out forwards;
 }
 
+.DropDown-Animation {
+    opacity: 0;
+    animation: DropDown-Animation 0.5s ease-out forwards;
+}
+
+@keyframes DropDown-Animation {
+    0% {
+        opacity: 0; /* Start with invisible */
+        transform: translateY(-100px); /* Start from 100px above */
+    }
+    100% {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
 @keyframes slideDown {
     0% {
         opacity: 0; /* Start with invisible */
@@ -355,6 +371,8 @@
 .AboutWebsite h5 {
     font-weight: bold;
 }
+
+
 
 
 @media screen and (max-width: 940px) {
