@@ -649,7 +649,7 @@ export default function IndexPage() {
 
             <div className='Navigation'>
                 <logo>
-                    <img src='https://cdn-icons-png.flaticon.com/512/5988/5988117.png' alt='...' />
+                    <img src='https://i.ibb.co/twFfTph6/pngegg.png' alt='...' />
                     {
                         token ?
                             <span>{userName}</span>
