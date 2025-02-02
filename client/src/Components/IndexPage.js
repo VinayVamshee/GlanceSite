@@ -906,9 +906,9 @@ export default function IndexPage() {
                                                     </div>
                                                 ))
                                             }
-                                            {
-                                                editMode && (
-                                                    <button className='btn btn-outline-danger' onClick={() => deleteCommonCategory(category._id)}> Delete Category:  {category.Category}</button>
+                                             {
+                                                AdmineditMode &&  (
+                                                    <button className='btn btn-outline-danger m-2' onClick={() => deleteCommonCategory(category._id)}> Delete Category:  {category.Name}</button>
                                                 )
                                             }
                                         </div>
