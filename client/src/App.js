@@ -12,7 +12,6 @@ function AnalyticsTracker() {
 
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: location.pathname });
-    console.log(`Analytics sent: ${location.pathname}`);
   }, [location]);
 
   return null;
