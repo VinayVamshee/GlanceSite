@@ -24,14 +24,14 @@ function AnalyticsTracker() {
 
 function App() {
   return (
-    <Router> {/* ✅ Now wrapping the app inside BrowserRouter */}
       <div className="App">
+     <Router> {/* ✅ Now wrapping the app inside BrowserRouter */}
         <AnalyticsTracker />
         <Routes>
           <Route path="/" element={<IndexPage />} />
         </Routes>
+   </Router>
       </div>
-    </Router>
   );
 }
 
