@@ -7,18 +7,19 @@ const CategorySchema = require('./Models/Category');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('./Models/User');
-const AdminUser = require('./Models/AdminUser'); 
+const AdminUser = require('./Models/AdminUser');
 const Feedback = require('./Models/Feedback');
+const LockedUser = require('./Models/LockedUser')
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3001; 
+const PORT = process.env.PORT;
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const authMiddleware = (req, res, next) => {
-    const token = req.header('Authorization')?.split(' ')[1]; 
+    const token = req.header('Authorization')?.split(' ')[1];
     if (!token) {
         return res.status(401).json({ msg: 'No token, authorization denied' });
     }
@@ -74,19 +75,19 @@ app.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid password' });
         }
-        const token = jwt.sign({ user: { userId: user.id } }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ user: { userId: user.id } }, JWT_SECRET);
         res.json({
             token,
-            user: { id: user.id, username: user.username }, 
+            user: { id: user.id, username: user.username },
         });
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ msg: 'Server error' }); 
+        res.status(500).json({ msg: 'Server error' });
     }
 });
 
 app.post('/register', async (req, res) => {
-    const { username, password, phoneno } = req.body; 
+    const { username, password, phoneno } = req.body;
 
     try {
         const existingUser = await User.findOne({ username });
@@ -94,15 +95,15 @@ app.post('/register', async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ 
-            username, 
+        const newUser = new User({
+            username,
             password: hashedPassword,
-            phoneno 
+            phoneno
         });
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-        console.error('Error during user registration:', error); 
+        console.error('Error during user registration:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
@@ -179,7 +180,7 @@ app.delete('/DeleteCategory/:id', authMiddleware, async (req, res) => {
 });
 
 app.post('/saveUserBackground', authMiddleware, async (req, res) => {
-    const userId = req.user.userId; 
+    const userId = req.user.userId;
     const { backgroundImage } = req.body;
     try {
         await User.findByIdAndUpdate(userId, { backgroundImage });
@@ -196,28 +197,28 @@ app.get('/getUserBackground', authMiddleware, async (req, res) => {
         if (!user) return res.status(404).send({ msg: "User not found." });
         res.status(200).send({ backgroundImage: user.backgroundImage });
     } catch (error) {
-        console.error("Error fetching background image:", error); 
+        console.error("Error fetching background image:", error);
         res.status(500).send({ msg: "Error fetching background image." });
     }
 });
 
 app.get('/getAllUsers', async (req, res) => {
     try {
-        const users = await User.find({}, 'username password phoneno'); 
+        const users = await User.find({}, 'username password phoneno');
         const userResponse = users.map(user => ({
             username: user.username,
             password: 'Encrypted',
             phoneno: user.phoneno
         }));
 
-        res.json(userResponse); 
+        res.json(userResponse);
     } catch (error) {
         console.error('Error fetching users:', error);
         res.status(500).json({ message: 'Error fetching users', error });
     }
 });
 
-const CommonSite = require('./Models/CommonSite'); 
+const CommonSite = require('./Models/CommonSite');
 
 app.post('/addSite', async (req, res) => {
     try {
@@ -248,7 +249,7 @@ app.put('/editSite/:id', async (req, res) => {
     }
 });
 
-const CommonCategory = require('./Models/CommonCategory'); 
+const CommonCategory = require('./Models/CommonCategory');
 
 app.post('/addCategory', async (req, res) => {
     const { Name } = req.body;
@@ -268,6 +269,7 @@ app.post('/addCategory', async (req, res) => {
 app.get('/getAllCommonCategories', async (req, res) => {
     try {
         const categories = await CommonCategory.find();
+        console.log('trigger getallcommoncategories');
         res.status(200).json(categories);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching categories', error });
@@ -294,7 +296,7 @@ app.delete('/deletecommonsite/:id', async (req, res) => {
     const siteId = req.params.id;
     try {
         const deletedSite = await CommonSite.findByIdAndDelete(siteId);
-        
+
         if (!deletedSite) {
             return res.status(404).json({ message: 'Site not found' });
         }
@@ -333,12 +335,63 @@ app.post('/feedback', async (req, res) => {
 
 app.get('/getfeedback', async (req, res) => {
     try {
-        const feedbacks = await Feedback.find(); 
+        const feedbacks = await Feedback.find();
         res.status(200).json(feedbacks);
     } catch (error) {
         res.status(500).json({ error: 'Error fetching feedbacks: ' + error.message });
     }
 });
+
+const CommonBackground = require('./Models/CommonBackground');
+
+app.post('/saveCommonBackground', async (req, res) => {
+    const { backgroundImage } = req.body;
+    try {
+        const commonBackground = await CommonBackground.findOneAndUpdate(
+            {},
+            { backgroundImage, updatedAt: Date.now() },
+            { new: true, upsert: true }
+        );
+        res.status(200).send({ msg: "Common background updated successfully!", commonBackground });
+    } catch (error) {
+        res.status(500).send({ msg: "Error updating common background." });
+    }
+});
+
+app.get('/getCommonBackground', async (req, res) => {
+    try {
+        const commonBackground = await CommonBackground.findOne();
+        res.status(200).send({ backgroundImage: commonBackground?.backgroundImage });
+    } catch (error) {
+        res.status(500).send({ msg: "Error fetching common background." });
+    }
+});
+
+app.post('/AddNewLockedUser', async (req, res) => {
+    try {
+        const { names } = req.body;
+        if (!Array.isArray(names) || names.length === 0) {
+            return res.status(400).json({ error: 'At least one name is required' });
+        }
+        await LockedUser.deleteMany({});
+        const newUsers = await LockedUser.insertMany(names.map(name => ({ name })));
+        res.status(201).json({ message: 'Users updated successfully', users: newUsers });
+    } catch (error) {
+        console.error('Error saving users:', error);
+        res.status(500).json({ error: 'Internal server error', details: error.message });
+    }
+});
+
+app.get('/GetLockedUsers', async (req, res) => {
+    try {
+        const lockedUsers = await LockedUser.find({});
+        res.status(200).json(lockedUsers);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
 
 const start = async () => {
     try {

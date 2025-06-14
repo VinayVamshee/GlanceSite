@@ -1,37 +1,112 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 50px;
+}
+
+.btn {
+    white-space: nowrap;
+}
+
+.mobile-Navigation {
+    display: none;
+}
+
+.Navigation .btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .IndexPage {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-.navbar {
+
+.Navigation {
+    height: 45px;
     padding: 5px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 3px;
-}
-.navbar p{
-    padding: 3px;
+    gap: 5px;
+
+    background-color: rgba(255, 255, 255, 0.675);
     border-radius: 5px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: rgb(132, 255, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+
+    opacity: 0;
+    transform: translateY(-100px); /* Start from above */
+    animation: slideDown 1s ease-out forwards;
 }
-.navbar .Login {
+
+.DropDown-Animation {
+    opacity: 0;
+    animation: DropDown-Animation 0.5s ease-out forwards;
+}
+
+@keyframes DropDown-Animation {
+    0% {
+        opacity: 0; /* Start with invisible */
+        transform: translateY(-100px); /* Start from 100px above */
+    }
+    100% {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0; /* Start with invisible */
+        transform: translateY(-100px); /* Start from 100px above */
+    }
+    100% {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+.Navigation logo {
+    margin-right: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: auto;
+    gap: 5px;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+
+.Navigation logo span {
+    animation: slideDown 2s ease-out forwards;
+}
+
+.Navigation logo img {
+    height: 35px;
+    width: 35px;
+    background-color: white;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Navigation .Search {
+    width: 100%;
+}
+
+.Navigation .options {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     gap: 5px;
 }
-.navbar .Login h3 {
-    text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    font-family: 'Times New Roman', Times, serif;
-    background-color: rgb(255, 255, 255);
-}
+
 .Search {
     width: 30%;
     display: flex;
@@ -39,87 +114,156 @@
     gap: 5px;
     align-items: center;
 }
+
 .Search input {
-    width:100%;
+    width: 100%;
     height: 30px;
     border: 0.5px solid black;
     border-radius: 10px;
     font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
     padding: 5px;
 }
-.footer {
-    display: flex;
-    gap: 5px;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 5px; 
-    border-radius: 5px;
-}
+
 .modal-body ul {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
+
 .modal-body ul li {
     background-color: rgba(165, 165, 165, 0.254);
     padding: 5px;
     border-radius: 10px;
 }
-.modal-content .modal-body input{
+
+.modal-content .modal-body input {
     width: 100%;
     height: 30px;
 }
+
 .modal-content .modal-body {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
+
 .Site {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     padding: 20px;
+    margin-top: 50px;
 }
+
 .Site .Categories {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    padding: 5px;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
 }
+.Site .Categories .naming-problem {
+    width: 32%;
+    text-align: center;
+}
+
+.Site .Categories .naming-problem p {
+    margin: 0px;
+    margin-bottom: 2px;
+    padding: 5px;
+
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.493);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.198);
+    width: 100%;
+}
+
 .Site .Categories .Category {
     background-color: rgba(255, 255, 255, 0.493);
-    border-radius: 10px;
-    width: 20%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    width: 100%;
+    height: fit-content;
     padding: 5px;
+
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.198);
+
+    animation: slideDown 0.8s ease-in;
 }
 
 .Site .Categories .Category h3 {
-    margin: 0; /* Remove default margin from heading */
-    text-align: center; /* Center align heading text */
-    margin-bottom: 10px; /* Space below heading */
+    margin: 0;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .AllSites {
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.637);
-    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.595);
+    padding: 10px;
     display: flex;
+    justify-content: flex-start;
     gap: 5px;
+    width: 100%;
 }
+
 .WebSite {
-    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 3px;
+    width: 70px;
 }
+
+.slideRightAnimation {
+    opacity: 0;
+    animation: slideRightAnimation 0.3s forwards;
+}
+
+.popAnimation {
+    opacity: 0;
+    visibility: hidden; 
+    animation: popAnimation 0.8s forwards;
+}
+
+@keyframes popAnimation {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+        visibility: hidden;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+        visibility: visible; 
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        visibility: visible; 
+    }
+}
+
+
+@keyframes slideRightAnimation {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .WebSite a {
     display: flex;
     flex-direction: column;
@@ -127,17 +271,23 @@
     align-items: center;
     text-decoration: none;
     color: black;
+    white-space: nowrap;
 }
+
 .WebSite:hover {
     cursor: pointer;
 }
-.WebSite:hover img{
-    transform: scale(1.15);
+
+.WebSite:hover img {
+    transform: scale(0.9);
     transition: 0.1s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.852);
 }
-.WebSite:hover a{
+
+.WebSite:hover a {
     color: blue;
 }
+
 .WebSite img {
     width: 50px;
     height: 50px;
@@ -145,40 +295,185 @@
     border-radius: 20px;
     transition: 0.1s ease-in-out;
 }
-.editCheckbox {
-    background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-    padding: 5px;
+
+.Checkbox {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
 }
-.editCheckbox input{
+
+.Checkbox input {
     cursor: pointer;
 }
 
-@media screen and (max-width: 680px) {
+.AboutAdmin {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1px;
+}
+
+.AboutAdmin .adminDetails {
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+}
+
+.adminDetails strong {
+    font-size: xx-large;
+    font-style: italic;
+}
+
+.adminDetails strong2 {
+    font-size: x-large;
+    font-style: italic;
+}
+
+.privacy {
+    font-style: italic;
+    background-color: rgba(128, 128, 128, 0.177);
+    color: blue;
+}
+
+.adminDetails a {
+    text-decoration: none;
+    font-style: italic;
+}
+
+.AboutAdmin img {
+    height: 300px;
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.747));
+}
+
+.AboutWebsite {
+    font-size: larger;
+    font-style: italic;
+    padding: 3px;
+    text-align: justify;
+    border-bottom: 1px solid black;
+}
+
+.AboutWebsite strong {
+    font-size: xx-large;
+}
+
+.AboutWebsite p {
+    border-bottom: 1px solid black;
+}
+
+.AboutWebsite h4 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.AboutWebsite h5 {
+    font-weight: bold;
+}
+
+
+
+
+@media screen and (max-width: 940px) {
+    .IndexPage {
+        height: auto;
+    }
+
     .Categories {
         flex-direction: column;
-        align-items: center;
     }
-    .Site .Categories .Category {
+    .Site .Categories .naming-problem {
         width: 100%;
     }
-    .Site .AllSites {
+
+    .Site .Categories .Category {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .AllSites {
+        justify-content: space-around;
+    }
+
+    * {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .Navigation {
         display: none;
     }
-    .editCheckbox {
-        display: none;
+
+    .Site {
+        margin-top: 30px;
     }
-    .navbar p {
-        display: none;
+
+    .mobile-Navigation {
+        height: 45px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        box-shadow: 0px 5px 5px rgba(41, 41, 41, 0.192);
+
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+
+        animation: slideDown 1s ease-out forwards;
+
     }
+
+    .mobile-Navigation img {
+        height: 25px;
+    }
+
     .Search {
         width: 100%;
     }
-    .IndexPage{
-        height: 100%;
+
+    .mobile-Navigation span {
+        font-weight: bolder;
+        font-size: 1.6rem;
+        white-space: nowrap;
     }
+
+    .collapse {
+        width: 100%;
+        opacity: 0;
+        transition: margin-top 1s ease-out, opacity 0.5s ease-out;
+        background-color: white;
+    }
+
+    .collapse.show {
+        margin-top: 45px;
+        opacity: 1;
+    }
+
+    .collapse .options {
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .collapse .options .btn {
+        width: fit-content;
+    }
+
+    .collapse .options .dropend .dropdown-toggle {
+        background-color: white;
+    }
+
 }
