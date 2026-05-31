@@ -517,9 +517,32 @@ export default function IndexPage() {
         }
     }, [token, AdminToken]);
 
-    return (
-        <div className='IndexPage' style={{ backgroundImage: `url(${backgroundImage})` }}>
+    const isVideo = backgroundImage?.match(/\.(mp4|webm|ogg)(\?.*)?$/i);
 
+    return (
+        <div className='IndexPage' style={!isVideo ? { backgroundImage: `url(${backgroundImage})` } : {}}>
+
+{isVideo && (
+
+        <video
+
+            autoPlay
+
+            muted
+
+            loop
+
+            playsInline
+
+            className="background-video"
+
+        >
+
+            <source src={backgroundImage} type="video/mp4" />
+
+        </video>
+
+    )}
             <div className='mobile-Navigation'>
                 <button className="btn" type="button" data-bs-toggle="collapse" data-bs-target="#Navigation-Collapse" aria-expanded="false" aria-controls="Navigation-Collapse">
                     <img src='https://www.freeiconspng.com/thumbs/menu-icon/menu-icon-24.png' alt='...' />
