@@ -1,0 +1,404 @@
+.settings-layout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+/* Settings search bar */
+.settings-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+}
+
+.settings-search-bar .search-icon {
+  color: var(--text-muted);
+}
+
+.settings-search-bar input {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+/* Horizontal tabs navigation */
+.settings-tabs-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.tab-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.tab-link.active {
+  background-color: var(--primary);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.25);
+  border-color: var(--primary);
+}
+
+/* Tab pane body */
+.settings-tab-panel {
+  flex: 1;
+}
+
+.tab-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-pane h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  border-left: 2px solid var(--primary);
+  padding-left: 8px;
+}
+
+.setting-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Theme Toggle strip selector */
+.theme-toggle-strip {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  width: 100%;
+}
+
+.strip-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.strip-btn:hover {
+  color: var(--text-primary);
+}
+
+.strip-btn.active {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Checkbox Preference item */
+.checkbox-setting-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color var(--transition-fast);
+}
+
+.checkbox-setting-item:hover {
+  color: var(--text-primary);
+}
+
+.checkbox-setting-item input[type="checkbox"] {
+  cursor: pointer;
+  margin-bottom: 0 !important;
+  width: auto !important;
+}
+
+/* Custom Theme editor layout card */
+.custom-theme-editor-card {
+  background-color: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-theme-editor-card label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.custom-theme-editor-card input[type="color"] {
+  width: 100%;
+  height: 38px;
+  padding: 2px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.custom-theme-editor-card input[type="range"] {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+/* Bookmarks form */
+.settings-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Profile details */
+.profile-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.profile-detail-row span {
+  color: var(--text-secondary);
+}
+
+.profile-detail-row strong {
+  color: var(--text-primary);
+}
+
+/* Admin lists */
+.admin-users-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.admin-users-table th {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 12px 14px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  font-weight: 600;
+  text-align: left;
+}
+
+.admin-users-table td {
+  padding: 12px 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.admin-users-table tr {
+  transition: background-color var(--transition-fast);
+}
+
+.admin-users-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Center and style the lock column checkbox cell */
+.admin-users-table td:nth-child(3),
+.admin-users-table th:nth-child(3) {
+  text-align: center;
+}
+
+.admin-users-table input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  width: 16px !important;
+  height: 16px !important;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.02);
+  margin-bottom: 0 !important;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.admin-users-table input[type="checkbox"]:checked {
+  background-color: var(--danger);
+  border-color: var(--danger);
+}
+
+.admin-users-table input[type="checkbox"]:checked::after {
+  content: '🔒';
+  font-size: 9px;
+  color: #FFFFFF;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.feedback-scroll-box {
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  scrollbar-width: thin !important;
+  -ms-overflow-style: auto !important;
+}
+
+.feedback-scroll-box::-webkit-scrollbar {
+  display: block !important;
+  width: 6px !important;
+}
+
+.feedback-scroll-box::-webkit-scrollbar-thumb {
+  background-color: var(--border-light) !important;
+  border-radius: var(--radius-full) !important;
+}
+
+.feedback-scroll-box::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-hover) !important;
+}
+
+.feedback-item {
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+}
+
+.feedback-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.feedback-item p {
+  color: var(--text-secondary);
+}
+
+.locked-tip {
+  font-size: 0.85rem;
+  color: var(--warning);
+  text-align: center;
+}
+
+/* Spaces */
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+
+/* CSV Backup Styling */
+.csv-backup-container {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.csv-actions-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.csv-btn-export,
+.csv-import-label-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.csv-btn-export:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-hover);
+}
+
+.csv-import-label-btn {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #FFFFFF;
+}
+
+.csv-import-label-btn:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+

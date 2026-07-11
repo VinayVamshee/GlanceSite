@@ -1,0 +1,69 @@
+.clock-widget-glass {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  backdrop-filter: var(--blur-normal);
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+  margin: 0 auto 16px auto;
+  transition: all var(--transition-normal);
+}
+
+.clock-widget-glass:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.clock-time {
+  font-family: var(--font-sans);
+  font-size: 2.2rem;
+  font-weight: 300; /* Ultra thin elegant typography */
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  display: flex;
+  align-items: baseline;
+}
+
+.clock-seconds {
+  font-size: 1.15rem;
+  opacity: 0.65;
+  margin-left: 2px;
+  font-weight: 300;
+}
+
+.clock-ampm {
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.8;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.clock-date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.clock-day {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-hover);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.clock-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}

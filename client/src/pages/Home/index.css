@@ -1,0 +1,204 @@
+.home-dashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Compact Hero section styling */
+.hero-section {
+  text-align: center;
+  padding: 24px 0 28px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-hover) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: #D1D5DB; /* Better readability */
+  max-width: 500px;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Spotlight search bar trigger */
+.spotlight-search-trigger {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 440px;
+  height: 40px;
+  padding: 0 14px;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  color: #9CA3AF;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  backdrop-filter: var(--blur-normal);
+}
+
+.spotlight-search-trigger:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.trigger-shortcut {
+  font-family: monospace;
+  font-size: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+/* Dashboard rows styling */
+.dashboard-row-section {
+  margin-bottom: 24px;
+}
+
+.section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 4px;
+}
+
+.section-title-wrap h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: #FFFFFF; /* High contrast */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+/* Main categories grids section */
+.dashboard-grids-area {
+  margin-top: 12px;
+}
+
+.grids-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--primary-hover);
+  margin-bottom: 14px;
+}
+
+.empty-collection-state {
+  text-align: center;
+  padding: 24px 16px;
+  background-color: rgba(255, 255, 255, 0.01);
+  border: 1px dashed var(--border-light);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+
+/* Dashboard Footer */
+.dashboard-footer {
+  margin-top: 32px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+}
+
+.footer-tagline {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-copyright {
+  font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  .hero-section {
+    padding: 16px 0 20px 0;
+  }
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+}
+
+/* Compact Mode Overrides */
+.density-compact .website-card-glass {
+  height: 48px;
+  padding: 6px 12px;
+  gap: 8px;
+}
+
+.density-compact .card-logo-wrapper {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+}
+
+.density-compact .card-title {
+  font-size: 0.85rem;
+}
+
+.density-compact .card-domain {
+  font-size: 0.68rem;
+}
+
+.density-compact .category-section {
+  margin-bottom: 16px;
+}
+
+.density-compact .category-header {
+  margin-bottom: 6px;
+  padding-bottom: 2px;
+}
+
+.density-compact .category-title-text {
+  font-size: 0.95rem;
+}
+
