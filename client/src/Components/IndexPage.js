@@ -545,7 +545,7 @@ export default function IndexPage() {
     )}
             <div className='mobile-Navigation'>
                 <button className="btn" type="button" data-bs-toggle="collapse" data-bs-target="#Navigation-Collapse" aria-expanded="false" aria-controls="Navigation-Collapse">
-                    <img src='https://www.freeiconspng.com/thumbs/menu-icon/menu-icon-24.png' alt='...' />
+                    <img src='' alt='...' />
                 </button>
                 <form className='Search' onSubmit={googleSearch}>
                     <input type="text" id="search" placeholder='Search Websit e or Google...' value={searchText} onChange={(e) => setSearchText(e.target.value)} />

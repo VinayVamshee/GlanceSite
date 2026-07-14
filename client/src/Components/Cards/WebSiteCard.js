@@ -40,11 +40,11 @@ export default function WebSiteCard({ site, onEdit, isEditMode, isAdmin }) {
       <div className="card-left">
         <div className="card-logo-wrapper">
           <img 
-            src={site.Logo || 'https://www.freeiconspng.com/uploads/logo-website-png-17.png'} 
+            src={site.Logo || 'https://img.icons8.com/color/1200/domain--v1.jpg'} 
             alt={`${site.Name} Logo`}
             className="card-logo"
             onError={(e) => {
-              e.target.src = 'https://www.freeiconspng.com/uploads/logo-website-png-17.png';
+              e.target.src = 'https://img.icons8.com/color/1200/domain--v1.jpg';
             }}
           />
         </div>

@@ -142,7 +142,7 @@ export default function SpotlightSearch() {
                   onClick={() => handleOpenSite(site)}
                   onMouseEnter={() => setSelectedIndex(index)}
                 >
-                  <img src={site.Logo || 'https://www.freeiconspng.com/uploads/logo-website-png-17.png'} alt="" className="spotlight-item-logo" />
+                  <img src={site.Logo || ''} alt="" className="spotlight-item-logo" />
                   <div className="spotlight-item-details">
                     <span className="spotlight-item-name">{site.Name}</span>
                     <span className="spotlight-item-url">{site.Url}</span>
